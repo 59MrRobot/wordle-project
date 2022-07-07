@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getSolution } from "./api/solution";
+import { Wordle } from "./components/Wordle";
 
 function App() {
-  const [solution, setSolution] = useState<string | null>(null);
+  const [solution, setSolution] = useState(null);
 
   const loadSolution = async () => {
     const loadedSolution = await getSolution();
@@ -22,7 +23,7 @@ function App() {
     <div className="App">
       <h1>Wordle</h1>
       {solution && (
-        <div>{solution}</div>
+        <Wordle solution={solution} />
       )}
     </div>
   );
