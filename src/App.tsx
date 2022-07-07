@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import { useEffect, useState } from "react";
+import { getSolution } from "./api/solution";
 
 function App() {
+  const [solution, setSolution] = useState<string | null>(null);
+
+  const loadSolution = async () => {
+    const loadedSolution = await getSolution();
+
+    const randomIndex = Math.floor(Math.random() * loadedSolution.length + 0);
+
+    const randomSolution = loadedSolution[randomIndex];
+
+    setSolution(randomSolution.word);
+  }
+
+  useEffect(() => {
+    loadSolution();
+  },[solution]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Wordle</h1>
+      {solution && (
+        <div>{solution}</div>
+      )}
     </div>
   );
 }
