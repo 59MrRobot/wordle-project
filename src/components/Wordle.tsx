@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import useWordle from '../hooks/useWordle';
 import { Grid } from './Grid';
+import { Keypad } from './Keypad';
 
 interface Props {
   solution: string;
 }
 
 export const Wordle: React.FC<Props> = ({ solution }) => {
-  const { turn, currentGuess, guesses, isCorrect, handleKeyup } = useWordle(solution);
+  const { turn, currentGuess, guesses, handleKeyup } = useWordle(solution);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup)
@@ -15,10 +16,6 @@ export const Wordle: React.FC<Props> = ({ solution }) => {
     // prevents loads of keyup eventListeners everytime useEffect runs
     return () => window.removeEventListener('keyup', handleKeyup);
   }, [handleKeyup])
-
-  useEffect(() => {
-    console.log(guesses, turn, isCorrect)
-  }, [guesses, turn, isCorrect]);
 
   return (
     <>
@@ -29,6 +26,7 @@ export const Wordle: React.FC<Props> = ({ solution }) => {
         guesses={guesses} 
         turn={turn} 
       />
+      <Keypad />
     </>
   )
 }

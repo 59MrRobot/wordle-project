@@ -6,3 +6,7 @@ interface Letter {
 }
 
 export type Guess = Letter[];
+
+export interface Letter {
+  key: string;
+}
