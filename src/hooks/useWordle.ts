@@ -10,9 +10,9 @@ enum Colors {
 const useWordle = (solution: string) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState('');
-  const [guesses, setGuesses] = useState<Guess[]>([]); 
+  const [guesses, setGuesses] = useState<Guess[]>([...Array(6)]); 
   const [history, setHistory] = useState<string[]>([]); 
-  // const [isCorrect, setIsCorrect] = useState(false); 
+  const [isCorrect, setIsCorrect] = useState(false); 
 
   // format a guess into an array of letter objects
   // e.g. [{letter: 'a', color: 'yellow'}]
@@ -45,9 +45,25 @@ const useWordle = (solution: string) => {
   // add a new guess to the guesses state
   // update the isCorrect state if the guess is correct
   // add one to the turn state
-  // const addNewGuess = () => {
+  const addNewGuess = (formattedGuess: Guess) => {
+    if (currentGuess === solution) {
+      setIsCorrect(true);
+    }
 
-  // }
+    setGuesses((prevGuesses) => {
+      let newGuesses = [...prevGuesses];
+
+      newGuesses[turn] = formattedGuess;
+
+      return newGuesses;
+    });
+
+    setHistory(prevHistory => ([...prevHistory, currentGuess]));
+
+    setTurn((prevTurn) => prevTurn + 1);
+
+    setCurrentGuess('');
+  }
 
   // handle keyup event & track current guess
   // if user presses enter, add the new guess
@@ -71,7 +87,7 @@ const useWordle = (solution: string) => {
 
       const formattedGuess = formatGuess();
 
-      console.log(formattedGuess);
+      addNewGuess(formattedGuess);
     }
 
     if (key === 'Backspace') {
@@ -86,8 +102,8 @@ const useWordle = (solution: string) => {
       }
     }
   }
-  // { turn, currentGuess, guesses, isCorrect, handleKeyup}
-  return { turn, currentGuess, handleKeyup };
+
+  return { turn, currentGuess, guesses, isCorrect, handleKeyup };
 }
 
 export default useWordle;
