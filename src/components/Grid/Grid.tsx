@@ -8,9 +8,9 @@ interface Props {
   turn: number;
 }
 
-export const Grid: React.FC<Props> = ({ currentGuess, guesses, turn }) => {
-  return (
-    <div>
+export const Grid: React.FC<Props> = React.memo(
+  ({ currentGuess, guesses, turn }) => (
+    <div className="grid">
       {guesses.map((guess, index) => {
         return index !== turn 
           ? (
@@ -28,5 +28,5 @@ export const Grid: React.FC<Props> = ({ currentGuess, guesses, turn }) => {
       })}
     </div>
   )
-}
+);
 

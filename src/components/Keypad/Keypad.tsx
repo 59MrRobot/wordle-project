@@ -1,44 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import { getLetters } from '../../api/letters';
-import { Letter } from '../../react-app-env';
+import React, { useCallback, useEffect, useState } from 'react';
 import cn from 'classnames';
 import './Keypad.scss';
+
+import data from '../../api/data.json';
 
 interface Props {
   usedKeys: any;
 }
 
-export const Keypad: React.FC<Props> = ({ usedKeys }) => {
-  const [letters, setLetters] = useState<Letter[]>([]);
+export const Keypad: React.FC<Props> = React.memo(
+  ({ usedKeys }) => {
+    const [letters, setLetters] = useState<{key: string}[]>([]);
 
-  const loadLetters = async () => {
-    const loadedLetters = await getLetters();
+    const loadLetters = useCallback(
+      async () => {
+        setLetters(data.letters);
+      }, []);
 
-    setLetters(loadedLetters);
+    useEffect(() => {
+      loadLetters();
+    }, [loadLetters]);
+
+    return (
+      <div className="keypad">
+        {letters && letters.map(letter => {
+          const color = usedKeys[letter.key];
+
+          return (
+            <div 
+              key={letter.key} 
+              className={cn(
+                'keypad__key',
+                `keypad__key--${color}`,
+              )}
+            >
+              {letter.key.toUpperCase()}
+            </div>
+          )
+        })}
+      </div>
+    );
   }
-
-  useEffect(() => {
-    loadLetters();
-  }, []);
-
-  return (
-    <div className="keypad">
-      {letters && letters.map(letter => {
-        const color = usedKeys[letter.key];
-
-        return (
-          <div 
-            key={letter.key} 
-            className={cn(
-              'keypad__key',
-              `keypad__key--${color}`,
-            )}
-          >
-            {letter.key.toUpperCase()}
-          </div>
-        )
-      })}
-    </div>
-  )
-}
+);
 

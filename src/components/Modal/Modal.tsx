@@ -7,8 +7,8 @@ interface Props {
   solution: string;
 }
 
-export const Modal: React.FC<Props> = ({ isCorrect, turn, solution }) => {
-  return (
+export const Modal: React.FC<Props> = React.memo(
+  ({ isCorrect, turn, solution }) => (
     <div className="modal">
       {isCorrect && (
         <div className="modal__message">
@@ -17,6 +17,7 @@ export const Modal: React.FC<Props> = ({ isCorrect, turn, solution }) => {
           <p>{`You found the solution in ${turn} ${turn === 1 ? 'guess' : 'guesses'} :)`}</p>
         </div>
       )}
+
       {!isCorrect && (
         <div className="modal__message">
           <h1>Unlucky!</h1>
@@ -26,4 +27,4 @@ export const Modal: React.FC<Props> = ({ isCorrect, turn, solution }) => {
       )}
     </div>
   )
-}
+);

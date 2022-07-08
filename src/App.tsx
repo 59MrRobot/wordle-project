@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import { getSolution } from "./api/solution";
+import { useCallback, useEffect, useState } from 'react';
 import { Wordle } from "./components/Wordle/Wordle";
 
+import data from './api/data.json';
+
 function App() {
-  const [solution, setSolution] = useState(null);
+  const [solution, setSolution] = useState<string>('');
 
-  const loadSolution = async () => {
-    const loadedSolution = await getSolution();
+  const loadSolution = useCallback(
+    async () => {
+      const randomIndex = Math.floor(Math.random() * data.solutions.length);
 
-    const randomIndex = Math.floor(Math.random() * loadedSolution.length + 0);
+      const randomSolution = data.solutions[randomIndex];
 
-    const randomSolution = loadedSolution[randomIndex];
-
-    setSolution(randomSolution.word);
-  }
+      setSolution(randomSolution.word);
+    }, []);
 
   useEffect(() => {
     loadSolution();
-  },[solution]);
+  },[loadSolution]);
 
   return (
     <div className="App">
