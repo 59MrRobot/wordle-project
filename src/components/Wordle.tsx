@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const Wordle: React.FC<Props> = ({ solution }) => {
-  const { turn, currentGuess, guesses, handleKeyup } = useWordle(solution);
+  const { turn, currentGuess, guesses, handleKeyup, usedKeys } = useWordle(solution);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup)
@@ -19,14 +19,12 @@ export const Wordle: React.FC<Props> = ({ solution }) => {
 
   return (
     <>
-      <div>solution - {solution}</div>
-      <div>current guess - {currentGuess}</div>
       <Grid 
         currentGuess={currentGuess} 
         guesses={guesses} 
         turn={turn} 
       />
-      <Keypad />
+      <Keypad usedKeys={usedKeys} />
     </>
   )
 }

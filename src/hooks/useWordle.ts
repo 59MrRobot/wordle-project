@@ -13,6 +13,7 @@ const useWordle = (solution: string) => {
   const [guesses, setGuesses] = useState<Guess[]>([...Array(6)]); 
   const [history, setHistory] = useState<string[]>([]); 
   const [isCorrect, setIsCorrect] = useState(false); 
+  const [usedKeys, setUsedKeys] = useState<any>({});
 
   // format a guess into an array of letter objects
   // e.g. [{letter: 'a', color: 'yellow'}]
@@ -37,7 +38,7 @@ const useWordle = (solution: string) => {
         formattedGuess[index].color = Colors.Yellow;
         solutionArray[solutionArray.indexOf(letter.key)] = '_';
       }
-    })
+    });
 
     return formattedGuess;
   }
@@ -61,6 +62,31 @@ const useWordle = (solution: string) => {
     setHistory(prevHistory => ([...prevHistory, currentGuess]));
 
     setTurn((prevTurn) => prevTurn + 1);
+
+    setUsedKeys((prevUsedKeys: any) => {
+      const newKeys = {...prevUsedKeys};
+
+      formattedGuess.forEach(letter => {
+        const currentColor = newKeys[letter.key];
+
+        if (letter.color === Colors.Green) {
+          newKeys[letter.key] = Colors.Green;
+          return;
+        }
+
+        if (letter.color === Colors.Yellow && currentColor !== Colors.Green) {
+          newKeys[letter.key] = Colors.Yellow;
+          return;
+        }
+
+        if (letter.color === Colors.Grey && currentColor !== Colors.Yellow && currentColor !== Colors.Green) {
+          newKeys[letter.key] = Colors.Grey;
+          return;
+        }
+      });
+
+      return newKeys;
+    })
 
     setCurrentGuess('');
   }
@@ -103,7 +129,7 @@ const useWordle = (solution: string) => {
     }
   }
 
-  return { turn, currentGuess, guesses, isCorrect, handleKeyup };
+  return { turn, currentGuess, guesses, isCorrect, handleKeyup, usedKeys };
 }
 
 export default useWordle;

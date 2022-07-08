@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { getLetters } from '../api/letters';
 import { Letter } from '../react-app-env';
+import cn from 'classnames';
 
-export const Keypad: React.FC = () => {
+interface Props {
+  usedKeys: any;
+}
+
+export const Keypad: React.FC<Props> = ({ usedKeys }) => {
   const [letters, setLetters] = useState<Letter[]>([]);
 
   const loadLetters = async () => {
@@ -18,8 +23,16 @@ export const Keypad: React.FC = () => {
   return (
     <div className="keypad">
       {letters && letters.map(letter => {
+        const color = usedKeys[letter.key];
+
         return (
-          <div key={letter.key} className="keypad__key">
+          <div 
+            key={letter.key} 
+            className={cn(
+              'keypad__key',
+              `keypad__key--${color}`,
+            )}
+          >
             {letter.key.toUpperCase()}
           </div>
         )
