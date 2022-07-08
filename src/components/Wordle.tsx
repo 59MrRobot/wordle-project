@@ -16,6 +16,9 @@ export const Wordle: React.FC<Props> = ({ solution }) => {
   }, [handleKeyup])
 
   return (
-    <div>current guess - {currentGuess}</div>
+    <>
+      <div>solution - {solution}</div>
+      <div>current guess - {currentGuess}</div>
+    </>
   )
 }

@@ -1,22 +1,45 @@
 import { useState } from "react"
+import { Guess } from "../react-app-env";
 
-// enum Colors {
-//   Grey = 'grey',
-//   Yellow = 'yellow',
-//   Green = 'green',
-// }
+enum Colors {
+  Grey = 'grey',
+  Yellow = 'yellow',
+  Green = 'green',
+}
 
 const useWordle = (solution: string) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState('');
-  // const [guesses, setGuesses] = useState([]); 
+  const [guesses, setGuesses] = useState<Guess[]>([]); 
   const [history, setHistory] = useState<string[]>([]); 
   // const [isCorrect, setIsCorrect] = useState(false); 
 
   // format a guess into an array of letter objects
   // e.g. [{letter: 'a', color: 'yellow'}]
   const formatGuess = () => {
-    console.log(`formatting current guess ${currentGuess}`)
+    const solutionArray = solution.split('');
+    const formattedGuess = currentGuess.split('').map((letter) => (
+      {
+        key: letter,
+        color: Colors.Grey,
+      }
+    ));
+    
+    formattedGuess.forEach((letter, index) => {
+      if (solutionArray[index] === letter.key) {
+        formattedGuess[index].color = Colors.Green;
+        solutionArray[index] = '_';
+      }
+    });
+
+    formattedGuess.forEach((letter, index) => {
+      if (solutionArray.includes(letter.key) && letter.color !== Colors.Green) {
+        formattedGuess[index].color = Colors.Yellow;
+        solutionArray[solutionArray.indexOf(letter.key)] = '_';
+      }
+    })
+
+    return formattedGuess;
   }
 
   // add a new guess to the guesses state
@@ -46,7 +69,9 @@ const useWordle = (solution: string) => {
         return;
       }
 
-      formatGuess();
+      const formattedGuess = formatGuess();
+
+      console.log(formattedGuess);
     }
 
     if (key === 'Backspace') {
