@@ -12,7 +12,7 @@ export const Grid: React.FC<Props> = ({ currentGuess, guesses, turn }) => {
   return (
     <div>
       {guesses.map((guess, index) => (
-        <GridRow key={index} />
+        <GridRow key={index} guess={guess} />
       ))}
     </div>
   )
