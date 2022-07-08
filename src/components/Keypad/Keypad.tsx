@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { getLetters } from '../api/letters';
-import { Letter } from '../react-app-env';
+import { getLetters } from '../../api/letters';
+import { Letter } from '../../react-app-env';
 import cn from 'classnames';
+import './Keypad.scss';
 
 interface Props {
   usedKeys: any;

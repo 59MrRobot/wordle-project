@@ -1,0 +1,33 @@
+.keypad {
+  max-width: 500px;
+  margin: 20px auto;
+
+  &__key {
+    margin: 5px;
+    width: 40px;
+    height: 50px;
+    background: #818384;
+    display: inline-block;
+    border-radius: 6px;
+    line-height: 50px;
+    color: #fff;
+
+    &--green {
+      background: #538d4e;
+      color: #fff;
+      transition: all 0.3s ease-in;
+    }
+
+    &--yellow {
+      background: #b59f3b;
+      color: #fff;
+      transition: all 0.3s ease-in;
+    }
+
+    &--grey {
+      background: #3a3a3c;
+      color: #fff;
+      transition: all 0.3s ease-in;
+    }
+  }
+}

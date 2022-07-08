@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
-import useWordle from '../hooks/useWordle';
-import { Grid } from './Grid';
-import { Keypad } from './Keypad';
+import React, { useEffect, useState } from 'react'
+import useWordle from '../../hooks/useWordle';
+import { Grid } from '../Grid/Grid';
+import { Keypad } from '../Keypad/Keypad';
+import { Modal } from '../Modal/Modal';
 
 interface Props {
   solution: string;
@@ -9,34 +10,40 @@ interface Props {
 
 export const Wordle: React.FC<Props> = ({ solution }) => {
   const { turn, currentGuess, guesses, handleKeyup, isCorrect, usedKeys } = useWordle(solution);
+  const [isGameDone, setIsGameDone] = useState(false);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup)
 
     if (isCorrect) {
-      console.log('You win!');
+      setTimeout(() => setIsGameDone(true), 2000);
       window.removeEventListener('keyup', handleKeyup);
     }
 
     if (turn > 5) {
-      console.log('Unlucky!');
+      setTimeout(() => setIsGameDone(true), 2000);
       window.removeEventListener('keyup', handleKeyup);
     }
 
-    // prevents loads of keyup eventListeners everytime useEffect runs
     return () => window.removeEventListener('keyup', handleKeyup);
   }, [handleKeyup, isCorrect, turn])
 
   return (
     <>
       {solution}
-      {currentGuess}
       <Grid 
         currentGuess={currentGuess} 
         guesses={guesses} 
         turn={turn} 
       />
       <Keypad usedKeys={usedKeys} />
+      {isGameDone && (
+        <Modal 
+          isCorrect={isCorrect}
+          turn={turn}
+          solution={solution}
+        />
+      )}
     </>
   )
 }

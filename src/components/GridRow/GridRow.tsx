@@ -1,6 +1,7 @@
 import React from 'react'
-import { Guess } from '../react-app-env';
+import { Guess } from '../../react-app-env';
 import cn from 'classnames';
+import './GridRow.scss';
 
 interface Props {
   guess?: Guess;

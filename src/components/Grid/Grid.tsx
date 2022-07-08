@@ -1,6 +1,6 @@
 import React from 'react'
-import { Guess } from '../react-app-env';
-import { GridRow } from './GridRow';
+import { Guess } from '../../react-app-env';
+import { GridRow } from '../GridRow/GridRow';
 
 interface Props {
   currentGuess: string;
