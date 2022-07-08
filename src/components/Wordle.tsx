@@ -8,17 +8,29 @@ interface Props {
 }
 
 export const Wordle: React.FC<Props> = ({ solution }) => {
-  const { turn, currentGuess, guesses, handleKeyup, usedKeys } = useWordle(solution);
+  const { turn, currentGuess, guesses, handleKeyup, isCorrect, usedKeys } = useWordle(solution);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup)
 
+    if (isCorrect) {
+      console.log('You win!');
+      window.removeEventListener('keyup', handleKeyup);
+    }
+
+    if (turn > 5) {
+      console.log('Unlucky!');
+      window.removeEventListener('keyup', handleKeyup);
+    }
+
     // prevents loads of keyup eventListeners everytime useEffect runs
     return () => window.removeEventListener('keyup', handleKeyup);
-  }, [handleKeyup])
+  }, [handleKeyup, isCorrect, turn])
 
   return (
     <>
+      {solution}
+      {currentGuess}
       <Grid 
         currentGuess={currentGuess} 
         guesses={guesses} 
