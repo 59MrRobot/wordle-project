@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-template/static/css/main.3cefd9b3.css",
-    "main.js": "/react-template/static/js/main.c1d69c3d.js",
-    "index.html": "/react-template/index.html",
-    "main.3cefd9b3.css.map": "/react-template/static/css/main.3cefd9b3.css.map",
-    "main.c1d69c3d.js.map": "/react-template/static/js/main.c1d69c3d.js.map"
+    "main.css": "/wordle-project/static/css/main.3cefd9b3.css",
+    "main.js": "/wordle-project/static/js/main.c1d69c3d.js",
+    "index.html": "/wordle-project/index.html",
+    "main.3cefd9b3.css.map": "/wordle-project/static/css/main.3cefd9b3.css.map",
+    "main.c1d69c3d.js.map": "/wordle-project/static/js/main.c1d69c3d.js.map"
   },
   "entrypoints": [
     "static/css/main.3cefd9b3.css",
