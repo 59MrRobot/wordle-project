@@ -11,9 +11,21 @@ interface Props {
 export const Grid: React.FC<Props> = ({ currentGuess, guesses, turn }) => {
   return (
     <div>
-      {guesses.map((guess, index) => (
-        <GridRow key={index} guess={guess} />
-      ))}
+      {guesses.map((guess, index) => {
+        return index !== turn 
+          ? (
+            <GridRow 
+              key={index} 
+              guess={guess}
+            />
+          )
+          : (
+            <GridRow 
+              key={index}
+              currentGuess={currentGuess}
+            />
+          );
+      })}
     </div>
   )
 }

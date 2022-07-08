@@ -3,12 +3,13 @@ import { Guess } from '../react-app-env';
 import cn from 'classnames';
 
 interface Props {
-  guess: Guess;
+  guess?: Guess;
+  currentGuess?: string;
 }
 
-export const GridRow: React.FC<Props> = ({ guess }) => {
-  return guess 
-    ? (
+export const GridRow: React.FC<Props> = ({ guess, currentGuess }) => {
+  if (guess) {
+    return (
       <div className="row">
         {guess.map((letter, index) => (
           <div 
@@ -22,9 +23,28 @@ export const GridRow: React.FC<Props> = ({ guess }) => {
           </div>
         ))}
       </div>
+    );
+  }
+  
+  if (currentGuess) {
+    let currentGuessArray = currentGuess.split('');
+
+    return (
+      <div className="row current">
+        {currentGuessArray.map((letter, index) => (
+          <div key={index} className="row__item filled">
+            {letter}
+          </div>
+        ))}
+        {[...Array(5 - currentGuessArray.length)].map((value, index) => (
+          <div key={index} className="row__item"></div>
+        ))}
+      </div>
     )
-    : (
-      <div className="row">
+  }
+
+  return (
+    <div className="row">
         <div className="row__item"></div>
         <div className="row__item"></div>
         <div className="row__item"></div>
