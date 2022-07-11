@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Guess } from '../../react-app-env';
 import cn from 'classnames';
 import './GridRow.scss';

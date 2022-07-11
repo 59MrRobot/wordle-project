@@ -1,32 +1,30 @@
-import React from 'react'
-import { Guess } from '../../react-app-env';
+import React, { useContext } from 'react'
+import { AppContext } from '../../AppContext';
 import { GridRow } from '../GridRow/GridRow';
 
-interface Props {
-  currentGuess: string;
-  guesses: Guess[];
-  turn: number;
-}
+export const Grid: React.FC = React.memo(
+  () => {
+    const { currentGuess, guesses, turn } = useContext(AppContext);
 
-export const Grid: React.FC<Props> = React.memo(
-  ({ currentGuess, guesses, turn }) => (
-    <div className="grid">
-      {guesses.map((guess, index) => {
-        return index !== turn 
-          ? (
-            <GridRow 
-              key={index} 
-              guess={guess}
-            />
-          )
-          : (
-            <GridRow 
-              key={index}
-              currentGuess={currentGuess}
-            />
-          );
-      })}
-    </div>
-  )
+    return (
+      <div className="grid">
+        {guesses.map((guess, index) => {
+          return index !== turn 
+            ? (
+              <GridRow 
+                key={index} 
+                guess={guess}
+              />
+            )
+            : (
+              <GridRow 
+                key={index}
+                currentGuess={currentGuess}
+              />
+            );
+        })}
+      </div>
+    );
+  }
 );
 

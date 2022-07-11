@@ -1,18 +1,16 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import './Keypad.scss';
 
 import data from '../../api/data.json';
 import { Key } from '../Key';
+import { AppContext } from '../../AppContext';
 
-interface Props {
-  usedKeys: any;
-}
-
-export const Keypad: React.FC<Props> = React.memo(
-  ({ usedKeys }) => {
+export const Keypad: React.FC = React.memo(
+  () => {
     const [rowOne, setRowOne] = useState<{key: string}[]>([]);
     const [rowTwo, setRowTwo] = useState<{key: string}[]>([]);
     const [rowThree, setRowThree] = useState<{key: string}[]>([]);
+    const { usedKeys } = useContext(AppContext);
 
     const loadRowOne = useCallback(
       async () => {

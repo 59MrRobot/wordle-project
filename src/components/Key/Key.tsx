@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cn from 'classnames';
 import './Key.scss';
+import { AppContext } from '../../AppContext';
 
 interface Props {
   letter: {key: string};
@@ -8,17 +9,25 @@ interface Props {
 };
 
 export const Key: React.FC<Props> = React.memo(
-  ({ letter, keyColor }) => (
-    <button
-      type="button"
-      id={letter.key}
-      className={cn(
-        'key',
-        `key--${keyColor}`,
-        { 'key--big': letter.key === 'Enter' || letter.key === 'Back' }
-      )}
-    >
-      {letter.key.toUpperCase()}
-    </button>
-  ),
+  ({ letter, keyColor }) => {
+    const { handleClick } = useContext(AppContext);
+
+    return (
+      <button
+        type="button"
+        id={letter.key}
+        className={cn(
+          'key',
+          `key--${keyColor}`,
+          { 'key--big': letter.key === 'Enter' || letter.key === 'Back' }
+        )}
+        onClick={() => {
+          handleClick(letter.key);
+        }}
+      >
+        {letter.key.toUpperCase()}
+      </button>
+    );
+  },
 );
+

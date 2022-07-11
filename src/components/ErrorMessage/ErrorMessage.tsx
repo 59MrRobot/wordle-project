@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../AppContext';
 import './ErrorMessage.scss';
 
-interface Props {
-  errorMessage: string;
-}
-
-export const ErrorMessage: React.FC<Props> = ({ errorMessage }) => (
-  <div className="error">
-    <p className="error__message">{errorMessage}</p>
-  </div>
-);
+export const ErrorMessage: React.FC = () => {
+  const { errorMessage } = useContext(AppContext);
+  
+  return (
+    <div className="error">
+      <p className="error__message">{errorMessage}</p>
+    </div>
+  );
+};
 
