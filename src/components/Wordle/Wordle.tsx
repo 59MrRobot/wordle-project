@@ -21,7 +21,7 @@ export const Wordle: React.FC<Props> = React.memo(
     const [isGameDone, setIsGameDone] = useState(false);
 
     useEffect(() => {
-      window.addEventListener('keyup', handleKeyup)
+      window.addEventListener('keyup', handleKeyup);
 
       if (isCorrect) {
         setTimeout(() => setIsGameDone(true), 2000);
@@ -34,16 +34,19 @@ export const Wordle: React.FC<Props> = React.memo(
       }
 
       return () => window.removeEventListener('keyup', handleKeyup);
-    }, [handleKeyup, isCorrect, turn])
+    }, [handleKeyup, isCorrect, turn]);
 
     return (
       <>
+        {currentGuess}
         <Grid 
           currentGuess={currentGuess} 
           guesses={guesses} 
           turn={turn} 
         />
-        <Keypad usedKeys={usedKeys} />
+        <Keypad 
+          usedKeys={usedKeys}
+        />
         {isGameDone && (
           <Modal 
             isCorrect={isCorrect}
