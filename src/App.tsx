@@ -6,7 +6,7 @@ import { Keypad } from './components/Keypad';
 import { Modal } from './components/Modal';
 import { ErrorMessage } from './components/ErrorMessage';
 import { Guess } from './react-app-env';
-import { AppContext } from './AppContext';
+import { AppContext } from './components/contexts/AppContext';
 
 enum Colors {
   Grey = 'grey',

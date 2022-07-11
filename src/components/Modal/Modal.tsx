@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../contexts/AppContext';
 import './Modal.scss';
 
 interface Props {

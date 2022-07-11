@@ -10,3 +10,8 @@ export type Guess = Letter[];
 export interface Letter {
   key: string;
 }
+
+export enum Themes {
+  Light = 'light',
+  Dark = 'dark',
+}

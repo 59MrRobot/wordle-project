@@ -3,7 +3,7 @@ import './Keypad.scss';
 
 import data from '../../api/data.json';
 import { Key } from '../Key';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../contexts/AppContext';
 
 export const Keypad: React.FC = React.memo(
   () => {

@@ -1,5 +1,4 @@
 .key {
-  // margin: 8px 5px;
   width: 43px;
   height: 58px;
   background: #818384;
@@ -9,6 +8,7 @@
   line-height: 50px;
   cursor: pointer;
   color: #fff;
+  font-weight: bold;
   
   &--big {
     width: 65px;

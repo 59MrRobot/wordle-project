@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import cn from 'classnames';
 import './Key.scss';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../contexts/AppContext';
 
 interface Props {
   letter: {key: string};
