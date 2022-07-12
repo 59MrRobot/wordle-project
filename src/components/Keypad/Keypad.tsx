@@ -1,45 +1,68 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import cn from 'classnames';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import './Keypad.scss';
 
 import data from '../../api/data.json';
+import { Key } from '../Key';
+import { AppContext } from '../contexts/AppContext';
 
-interface Props {
-  usedKeys: any;
-}
+export const Keypad: React.FC = React.memo(
+  () => {
+    const [rowOne, setRowOne] = useState<{key: string}[]>([]);
+    const [rowTwo, setRowTwo] = useState<{key: string}[]>([]);
+    const [rowThree, setRowThree] = useState<{key: string}[]>([]);
+    const { usedKeys } = useContext(AppContext);
 
-export const Keypad: React.FC<Props> = React.memo(
-  ({ usedKeys }) => {
-    const [letters, setLetters] = useState<{key: string}[]>([]);
-
-    const loadLetters = useCallback(
+    const loadRowOne = useCallback(
       async () => {
-        setLetters(data.letters);
+        setRowOne(data.letters['row-1']);
+      }, []);
+    
+    const loadRowTwo = useCallback(
+      async () => {
+        setRowTwo(data.letters['row-2']);
+      }, []);
+
+    const loadRowThree = useCallback(
+      async () => {
+        setRowThree(data.letters['row-3']);
       }, []);
 
     useEffect(() => {
-      loadLetters();
-    }, [loadLetters]);
+      loadRowOne();
+      loadRowTwo();
+      loadRowThree();
+    }, [loadRowOne, loadRowTwo, loadRowThree]);
 
     return (
       <div className="keypad">
-        {letters && letters.map(letter => {
-          const color = usedKeys[letter.key];
-
-          return (
-            <div 
+        <div className="keypad__row">
+          {rowOne.map(letter => (
+            <Key 
               key={letter.key} 
-              className={cn(
-                'keypad__key',
-                `keypad__key--${color}`,
-              )}
-            >
-              {letter.key.toUpperCase()}
-            </div>
-          )
-        })}
+              letter={letter} 
+              keyColor={usedKeys[letter.key]}
+            />
+          ))}
+        </div>
+        <div className="keypad__row">
+          {rowTwo.map(letter => (
+            <Key 
+              key={letter.key} 
+              letter={letter} 
+              keyColor={usedKeys[letter.key]}
+            />
+          ))}
+        </div>
+        <div className="keypad__row">
+          {rowThree.map(letter => (
+            <Key 
+              key={letter.key}
+              letter={letter}
+              keyColor={usedKeys[letter.key]}
+            />
+          ))}
+        </div>
       </div>
     );
   }
 );
-

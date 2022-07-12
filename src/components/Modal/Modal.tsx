@@ -1,30 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../contexts/AppContext';
 import './Modal.scss';
 
 interface Props {
-  isCorrect: boolean;
-  turn: number;
-  solution: string;
+  onNewGame: () => void;
 }
 
 export const Modal: React.FC<Props> = React.memo(
-  ({ isCorrect, turn, solution }) => (
-    <div className="modal">
-      {isCorrect && (
-        <div className="modal__message">
-          <h1>You Win!</h1>
-          <p className="modal__solution modal__solution--win">{solution}</p>
-          <p>{`You found the solution in ${turn} ${turn === 1 ? 'guess' : 'guesses'} :)`}</p>
-        </div>
-      )}
+  ({ onNewGame }) => {
+    const { isCorrect, turn, solution } = useContext(AppContext);
 
-      {!isCorrect && (
+    return (
+      <div className="modal">
         <div className="modal__message">
-          <h1>Unlucky!</h1>
-          <h2 className="modal__solution modal__solution--lose">{solution}</h2>
-          <p>Better luck next time :)</p>
-        </div>
-      )}
-    </div>
-  )
+            {isCorrect && (
+              <>
+                <h1>You Win!</h1>
+                <p className="modal__solution modal__solution--win">
+                  {solution}
+                </p>
+                <p>
+                  {`You found the solution in ${turn} ${turn === 1 ? 'guess' : 'guesses'} :)`}
+                </p>
+              </>
+            )}
+            {!isCorrect && (
+              <>
+                <h1>Unlucky!</h1>
+                <h2 className="modal__solution modal__solution--lose">
+                  {solution}
+                </h2>
+                <p>Better luck next time :)</p>
+              </>
+            )}
+
+            <button
+              type="button"
+              className="modal__button"
+              onClick={() => {
+                onNewGame();
+              }}
+            >
+              NEW GAME
+            </button>
+          </div>
+      </div>
+    );
+  }
 );

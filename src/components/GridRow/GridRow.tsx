@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Guess } from '../../react-app-env';
 import cn from 'classnames';
 import './GridRow.scss';
@@ -12,7 +12,7 @@ export const GridRow: React.FC<Props> = React.memo(
   ({ guess, currentGuess }) => {
     if (guess) {
       return (
-        <div className="row">
+        <div className="row grid__row">
           {guess.map((letter, index) => (
             <div 
               key={index} 
