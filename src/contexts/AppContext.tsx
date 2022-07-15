@@ -1,5 +1,5 @@
 import React from "react";
-import { Guess } from "../../react-app-env";
+import { Guess } from "../react-app-env";
 
 interface Context {
   solution: string,

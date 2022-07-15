@@ -96,34 +96,6 @@
   }
 }
 
-@keyframes rotateDark {
-  0% {
-    transform: rotateX(0);
-    background-color: #fff;
-    border-color: #333;
-  }
-
-  45% {
-    transform: rotateX(90deg);
-    background-color: #fff;
-    border-color: #333;
-  }
-
-  55% {
-    transform: rotateX(90deg);
-    background-color: var(--background-color);
-    border-color: var(--border-color);
-    color: #fff;
-  }
-
-  100% {
-    transform: rotateX(0deg);
-    background-color: var(--background-color);
-    border-color: var(--border-color);
-    color: #fff;
-  }
-}
-
 @keyframes bounce {
   0% {
     transform: scale(1);

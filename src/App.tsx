@@ -6,7 +6,9 @@ import { Keypad } from './components/Keypad';
 import { Modal } from './components/Modal';
 import { ErrorMessage } from './components/ErrorMessage';
 import { Guess } from './react-app-env';
-import { AppContext } from './components/contexts/AppContext';
+import { AppContext } from './contexts/AppContext';
+import { Header } from './components/Header';
+import { Instructions } from './components/Instructions';
 
 enum Colors {
   Grey = 'grey',
@@ -24,6 +26,7 @@ function App() {
   const [usedKeys, setUsedKeys] = useState<any>({});
   const [errorMessage, setErrorMessage] = useState('');
   const [isGameDone, setIsGameDone] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
 
   const createNewGame = () => {
     loadSolution();
@@ -222,7 +225,11 @@ function App() {
       isCorrect,
     }}>
       <div className="App">
-        <h1 className="App__title">Wordle</h1>
+        <Header setShowInstructions={setShowInstructions} />
+
+        {showInstructions && (
+          <Instructions setShowInstructions={setShowInstructions} />
+        )}
 
         {solution && (
           <>

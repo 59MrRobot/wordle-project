@@ -1,0 +1,21 @@
+.Header {
+  padding: 5px 16px;
+  border-bottom: 1px solid #bbb;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__help {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__title {
+    font-size: 37px;
+    margin: 0;
+    text-align: center;
+  }
+}
