@@ -48,8 +48,6 @@ export const Instructions: React.FC<Props> = ({ setShowInstructions }) => {
             <Example letters={['v', 'a', 'g', 'u', 'e']} />
             <p>The letter <strong>U</strong> is not in the word in any spot.</p>
           </div>
-
-          <p>A new <strong>WORDLE</strong> will be available each day!</p>
         </div>
       </div>
     </div>
