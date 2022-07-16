@@ -13,7 +13,8 @@
   background: rgba(255,255,255,0.7);
 
   &__wrapper {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     padding: 16px;
     border-radius: 8px;
     border: 1px solid #1a1a1b;

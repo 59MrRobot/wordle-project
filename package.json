@@ -1,6 +1,6 @@
 {
-  "name": "react-template",
-  "homepage": "https://59MrRobot.github.io/wordle-project/",
+  "name": "wordle-project",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
