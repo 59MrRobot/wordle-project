@@ -13,19 +13,25 @@
   }
 
   &__item {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     margin: 2.5px;
     width: 50%;
+    max-width: 61px;
     max-height: 61px;
     border: 2px solid #bbb;
-    box-sizing: border-box;
 
     font-size: 2rem;
-    line-height: 61px;
     font-weight: bold;
 
-    text-align: center;
     text-transform: uppercase;
+
+    @media (min-width: 768px) {
+      max-width: 54px;
+      max-height: 54px;
+    }
 
     &::after {
       content: "";

@@ -9,10 +9,10 @@ export const Grid: React.FC = React.memo(
     return (
       <div className="grid">
         {guesses.map((guess, index) => {
-          return index !== turn 
+          return index !== turn
             ? (
               <GridRow 
-                key={index} 
+                key={index}
                 guess={guess}
               />
             )
