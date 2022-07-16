@@ -19,6 +19,7 @@
 
     margin: 2.5px;
     width: 50%;
+    max-width: 61px;
     max-height: 61px;
     border: 2px solid #bbb;
 
@@ -26,6 +27,11 @@
     font-weight: bold;
 
     text-transform: uppercase;
+
+    @media (min-width: 768px) {
+      max-width: 54px;
+      max-height: 54px;
+    }
 
     &::after {
       content: "";
