@@ -1,10 +1,12 @@
 .row {
-  text-align: center;
   display: flex;
   justify-content: center;
-  padding: 0 10px;
+
   max-width: 330px;
   margin: 0 auto;
+  padding: 0 10px;
+
+  text-align: center;
 
   &:nth-child(1) {
     margin-top: 10px;
@@ -12,15 +14,18 @@
 
   &__item {
     display: block;
-    width: 50%;
-    border: 2px solid #bbb;
     margin: 2.5px;
-    text-align: center;
+    width: 50%;
     max-height: 61px;
+    border: 2px solid #bbb;
+    box-sizing: border-box;
+
+    font-size: 2rem;
     line-height: 61px;
-    text-transform: uppercase;
     font-weight: bold;
-    font-size: 2.5em;
+
+    text-align: center;
+    text-transform: uppercase;
 
     &::after {
       content: "";
@@ -49,19 +54,19 @@
 .grey {
   --background-color: #3a3a3c;
   --border-color: #3a3a3c;
-  animation: rotate 0.5s ease forwards;
+  animation: rotate 1s ease forwards;
 }
 
 .green {
   --background-color: #538d4e;
   --border-color: #538d4e;
-  animation: rotate 0.5s ease forwards;
+  animation: rotate 1s ease forwards;
 }
 
 .yellow {
   --background-color: #b59f3b;
   --border-color: #b59f3b;
-  animation: rotate 0.5s ease forwards;
+  animation: rotate 1s ease forwards;
 }
 
 .current > .filled {
@@ -96,34 +101,6 @@
   }
 }
 
-@keyframes rotateDark {
-  0% {
-    transform: rotateX(0);
-    background-color: #fff;
-    border-color: #333;
-  }
-
-  45% {
-    transform: rotateX(90deg);
-    background-color: #fff;
-    border-color: #333;
-  }
-
-  55% {
-    transform: rotateX(90deg);
-    background-color: var(--background-color);
-    border-color: var(--border-color);
-    color: #fff;
-  }
-
-  100% {
-    transform: rotateX(0deg);
-    background-color: var(--background-color);
-    border-color: var(--border-color);
-    color: #fff;
-  }
-}
-
 @keyframes bounce {
   0% {
     transform: scale(1);
@@ -131,7 +108,7 @@
   }
 
   50% {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   100% {

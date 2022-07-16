@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../contexts/AppContext';
+import { AppContext } from '../../contexts/AppContext';
 import { GridRow } from '../GridRow/GridRow';
 
 export const Grid: React.FC = React.memo(

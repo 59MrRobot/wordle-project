@@ -1,13 +1,16 @@
 .keypad {
   max-width: 484px;
   margin: 10px auto;
-  padding: 0 10px;
 
   &__row {
     display: flex;
     justify-content: center;
     gap: 5px;
     margin-top: 8px;
+
+    &:nth-child(1) {
+      margin: 0;
+    }
 
     &:nth-child(2) {
       margin: 10px 22px 0;

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../contexts/AppContext';
+import { AppContext } from '../../contexts/AppContext';
 import './ErrorMessage.scss';
 
 export const ErrorMessage: React.FC = () => {
