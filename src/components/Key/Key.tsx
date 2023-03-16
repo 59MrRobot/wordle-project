@@ -110,7 +110,6 @@ export const Key: React.FC<Props> = React.memo(
   
           if (history.includes(currentGuess)) {
             dispatch(updateErrorMessage('You\'ve already guessed that word'));
-            dispatch(updateErrorMessage(''));
             return;
           }
   
@@ -141,7 +140,6 @@ export const Key: React.FC<Props> = React.memo(
   
           if (history.includes(currentGuess)) {
             dispatch(updateErrorMessage('You\'ve already guessed that word'));
-            dispatch(updateErrorMessage(''));
             return;
           }
   

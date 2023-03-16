@@ -7,7 +7,6 @@ const pickRandomSolution = () => {
 
   const randomSolution = data.solutions[randomIndex];
 
-  console.log(randomSolution.word);
   return randomSolution.word;
 }
 
