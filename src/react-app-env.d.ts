@@ -1,6 +1,6 @@
 /// <reference types="react-scripts" />
 
-interface Letter {
+export interface Letter {
   key: string;
   color: string;
 }
@@ -14,4 +14,15 @@ export interface Letter {
 export enum Themes {
   Light = 'light',
   Dark = 'dark',
+}
+
+interface State {
+  solution: string;
+  turn: number;
+  currentGuess: "";
+  // guesses: [...Array(6)];
+  // history: [];
+  isCorrect: boolean;
+  // usedKeys: {};
+  isGameDone: boolean;
 }

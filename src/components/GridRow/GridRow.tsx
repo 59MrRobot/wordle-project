@@ -10,6 +10,7 @@ interface Props {
 
 export const GridRow: React.FC<Props> = React.memo(
   ({ guess, currentGuess }) => {
+
     if (guess) {
       return (
         <div className="row grid__row">
@@ -33,7 +34,7 @@ export const GridRow: React.FC<Props> = React.memo(
 
       return (
         <div className="row current">
-          {currentGuessArray.map((letter, index) => (
+          {currentGuessArray.map((letter: string, index: number) => (
             <div key={index} className="row__item filled">
               {letter}
             </div>

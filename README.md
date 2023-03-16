@@ -17,6 +17,8 @@ Access my site at https://59mrrobot.github.io/wordle-project/
 ## Technologies:
   - TypeScript
   - React
+  - Redux
+  - Redux Persist
   - HTML
   - SCSS
   - BEM Methodology

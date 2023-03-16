@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../contexts/AppContext';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import './ErrorMessage.scss';
 
 export const ErrorMessage: React.FC = () => {
-  const { errorMessage } = useContext(AppContext);
+  const errorMessage = useSelector((state: any) => state).wordle.errorMessage;
   
   return (
     <div className="error">

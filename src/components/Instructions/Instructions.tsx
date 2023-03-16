@@ -1,12 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { updateShowInstructions } from '../../redux/wordleReducer';
 import { Example } from '../Example';
 import './Instructions.scss';
 
-interface Props {
-  setShowInstructions: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const Instructions: React.FC = () => {
+  const dispatch = useDispatch();
 
-export const Instructions: React.FC<Props> = ({ setShowInstructions }) => {
   return (
     <div className="Instructions">
       <div className="Instructions__wrapper">
@@ -16,7 +16,7 @@ export const Instructions: React.FC<Props> = ({ setShowInstructions }) => {
           <button 
             type="button" 
             className="Instructions__close"
-            onClick={() => setShowInstructions(false)}
+            onClick={() => dispatch(updateShowInstructions(false))}
           >
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" data-testid="icon-close">
               <path fill="var(--color-tone-1)" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>

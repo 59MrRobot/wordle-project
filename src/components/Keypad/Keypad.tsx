@@ -1,16 +1,16 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Keypad.scss';
 
 import data from '../../api/data.json';
 import { Key } from '../Key';
-import { AppContext } from '../../contexts/AppContext';
+import { useSelector } from 'react-redux';
 
 export const Keypad: React.FC = React.memo(
   () => {
     const [rowOne, setRowOne] = useState<{key: string}[]>([]);
     const [rowTwo, setRowTwo] = useState<{key: string}[]>([]);
     const [rowThree, setRowThree] = useState<{key: string}[]>([]);
-    const { usedKeys } = useContext(AppContext);
+    const usedKeys = useSelector((state: any) => state).wordle.usedKeys;
 
     const loadRowOne = useCallback(
       async () => {
@@ -44,6 +44,7 @@ export const Keypad: React.FC = React.memo(
             />
           ))}
         </div>
+
         <div className="keypad__row">
           {rowTwo.map(letter => (
             <Key 
@@ -53,6 +54,7 @@ export const Keypad: React.FC = React.memo(
             />
           ))}
         </div>
+
         <div className="keypad__row">
           {rowThree.map(letter => (
             <Key 

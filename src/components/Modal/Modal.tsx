@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../contexts/AppContext';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { resetGame } from '../../redux/wordleReducer';
 import './Modal.scss';
 
-interface Props {
-  onNewGame: () => void;
-}
-
-export const Modal: React.FC<Props> = React.memo(
-  ({ onNewGame }) => {
-    const { isCorrect, turn, solution } = useContext(AppContext);
+export const Modal: React.FC = React.memo(
+  () => {
+    const dispatch = useDispatch();
+    const wordle = useSelector((state: any) => state);
+    const { solution, turn, isCorrect } = wordle.wordle;
 
     return (
       <div className="modal">
@@ -37,9 +36,7 @@ export const Modal: React.FC<Props> = React.memo(
             <button
               type="button"
               className="modal__button"
-              onClick={() => {
-                onNewGame();
-              }}
+              onClick={() => dispatch(resetGame())}
             >
               NEW GAME
             </button>
