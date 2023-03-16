@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import cn from 'classnames';
 import './Key.scss';
 import { useSelector } from 'react-redux/es/exports';
-import { Guess, Letter } from '../../react-app-env';
+import { Guess, Letter, State } from '../../react-app-env';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { increaseTurn, isGuessCorrect, updateCurrentGuess, updateErrorMessage, updateGameResult, updateGuesses, updateHistory, updateUsedKeys } from '../../redux/wordleReducer';
 
@@ -19,7 +19,7 @@ export enum Colors {
 
 export const Key: React.FC<Props> = React.memo(
   ({ letter, keyColor }) => {
-    const wordle = useSelector((state: any) => state);
+    const wordle = useSelector((state: State) => state);
     const dispatch = useDispatch();
     const {
       solution,

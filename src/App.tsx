@@ -9,9 +9,10 @@ import { Instructions } from './components/Instructions';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { pickSolution } from './redux/wordleReducer';
+import { State } from './react-app-env';
 
 function App() {
-  const wordle = useSelector((state: any) => state);
+  const wordle = useSelector((state: State) => state);
   const dispatch = useDispatch();  
 
   const {

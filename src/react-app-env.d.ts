@@ -16,13 +16,19 @@ export enum Themes {
   Dark = 'dark',
 }
 
-interface State {
+interface Wordle {
+  showInstructions: string;
   solution: string;
   turn: number;
   currentGuess: "";
-  // guesses: [...Array(6)];
-  // history: [];
+  guesses: Guess[];
+  history: string[];
   isCorrect: boolean;
-  // usedKeys: {};
+  usedKeys: any;
   isGameDone: boolean;
+  errorMessage: string,
+}
+
+interface State {
+  wordle: Wordle;
 }

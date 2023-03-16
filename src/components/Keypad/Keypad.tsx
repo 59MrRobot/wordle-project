@@ -4,13 +4,14 @@ import './Keypad.scss';
 import data from '../../api/data.json';
 import { Key } from '../Key';
 import { useSelector } from 'react-redux';
+import { State } from '../../react-app-env';
 
 export const Keypad: React.FC = React.memo(
   () => {
     const [rowOne, setRowOne] = useState<{key: string}[]>([]);
     const [rowTwo, setRowTwo] = useState<{key: string}[]>([]);
     const [rowThree, setRowThree] = useState<{key: string}[]>([]);
-    const usedKeys = useSelector((state: any) => state).wordle.usedKeys;
+    const usedKeys = useSelector((state: State) => state).wordle.usedKeys;
 
     const loadRowOne = useCallback(
       async () => {

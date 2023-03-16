@@ -1,13 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { State } from '../../react-app-env';
 import { resetGame } from '../../redux/wordleReducer';
 import './Modal.scss';
 
 export const Modal: React.FC = React.memo(
   () => {
     const dispatch = useDispatch();
-    const wordle = useSelector((state: any) => state);
-    const { solution, turn, isCorrect } = wordle.wordle;
+    const wordle = useSelector((state: State) => state);
+    const {
+      solution,
+      turn,
+      isCorrect
+  } = wordle.wordle;
 
     return (
       <div className="modal">
