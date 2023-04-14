@@ -19,7 +19,9 @@ export const Instructions: React.FC = () => {
             className="Instructions__close"
             onClick={() => dispatch(updateShowInstructions(false))}
           >
-            <CloseIcon style={{ color: theme === "light" ? "#000" : "#fff"}}/>
+            <CloseIcon style={
+              { color: theme === "light" ? "#000000" : "#fffff"}
+            }/>
           </button>
         </div>
 
