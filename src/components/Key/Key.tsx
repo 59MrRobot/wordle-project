@@ -2,9 +2,19 @@ import React, { useCallback, useEffect } from 'react';
 import cn from 'classnames';
 import './Key.scss';
 import { useSelector } from 'react-redux/es/exports';
-import { Guess, Letter, State } from '../../react-app-env';
+import { Guess, Letter, State, Wordle } from '../../react-app-env';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { increaseTurn, isGuessCorrect, updateCurrentGuess, updateErrorMessage, updateGameResult, updateGuesses, updateHistory, updateUsedKeys } from '../../redux/wordleReducer';
+import {
+  increaseTurn,
+  isGuessCorrect,
+   updateCurrentGuess,
+  updateErrorMessage,
+  updateGameResult,
+  updateGuesses,
+  updateHistory,
+  updateUsedKeys
+} from '../../redux/wordleReducer';
+import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined';
 
 interface Props {
   letter: {key: string};
@@ -19,7 +29,7 @@ export enum Colors {
 
 export const Key: React.FC<Props> = React.memo(
   ({ letter, keyColor }) => {
-    const wordle = useSelector((state: State) => state);
+    const wordle: Wordle = useSelector((state: State) => state.wordle);
     const dispatch = useDispatch();
     const {
       solution,
@@ -28,7 +38,8 @@ export const Key: React.FC<Props> = React.memo(
       history,
       usedKeys,
       isCorrect,
-    } = wordle.wordle;
+      theme,
+    } = wordle;
 
     const formatGuess = useCallback(
       () => {
@@ -182,6 +193,7 @@ export const Key: React.FC<Props> = React.memo(
         id={letter.key}
         className={cn(
           'key',
+          `key--${theme}`,
           `key--${keyColor}`,
           { 'key--big': letter.key === 'Enter' || letter.key === 'Back' }
         )}
@@ -189,7 +201,10 @@ export const Key: React.FC<Props> = React.memo(
           handleClick(letter.key);
         }}
       >
-        {letter.key.toUpperCase()}
+        {letter.key === 'Back'
+          ? (<BackspaceOutlinedIcon />)
+          : (letter.key.toUpperCase())
+        }
       </button>
     );
   },

@@ -1,4 +1,4 @@
-/// <reference types="react-scripts" />
+// / <reference types="react-scripts" />
 
 export interface Letter {
   key: string;
@@ -16,7 +16,7 @@ export enum Themes {
   Dark = 'dark',
 }
 
-interface Wordle {
+export interface Wordle {
   showInstructions: string;
   solution: string;
   turn: number;
@@ -27,6 +27,7 @@ interface Wordle {
   usedKeys: any;
   isGameDone: boolean;
   errorMessage: string,
+  theme: string;
 }
 
 interface State {

@@ -9,10 +9,10 @@ import { Instructions } from './components/Instructions';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { pickSolution } from './redux/wordleReducer';
-import { State } from './react-app-env';
+import { State, Wordle } from './react-app-env';
 
 function App() {
-  const wordle = useSelector((state: State) => state);
+  const wordle: Wordle = useSelector((state: State) => state.wordle);
   const dispatch = useDispatch();  
 
   const {
@@ -20,14 +20,15 @@ function App() {
     solution,
     errorMessage,
     isGameDone,
-  } = wordle.wordle;
+    theme,
+  } = wordle;
 
   useEffect(() => {
     dispatch(pickSolution());
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className={`App App--${theme}`}>
       <Header />
 
       {showInstructions && (
@@ -35,7 +36,7 @@ function App() {
       )}
 
       {solution && (
-        <>
+        <div className="App__container">
           {errorMessage && (
             <ErrorMessage />
           )}
@@ -47,7 +48,7 @@ function App() {
           {isGameDone && (
             <Modal />
           )}
-        </>
+        </div>
       )}
     </div>
   );

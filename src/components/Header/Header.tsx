@@ -1,25 +1,48 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { updateShowInstructions } from '../../redux/wordleReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeTheme, updateShowInstructions } from '../../redux/wordleReducer';
 import './Header.scss';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import { Tooltip } from '@mui/material';
 
 export const Header: React.FC = () => {
+  const theme = useSelector((state: any) => state.wordle).theme
   const dispatch = useDispatch();
 
   return (
     <header className="Header">
       <div className="Header__wrapper">
-      <button 
-            type="button" 
-            className="Header__help"
-            onClick={() => dispatch(updateShowInstructions(true))}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" data-testid="icon-help">
-              <path fill="var(--color-tone-1)" d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path>
-            </svg>
-          </button>
-        <h1 className="Header__title">Wordle</h1>
-        <div></div>
+        <button
+          type="button"
+          className="Header__help"
+          onClick={() => dispatch(updateShowInstructions(true))}
+        >
+          <HelpOutlineOutlinedIcon
+            style={{ color: theme === 'dark' ? "#fff" : "#000"}}
+          />
+        </button>
+
+        <h1 className={`Header__title Header__title--${theme}`}>Wordle</h1>
+
+        <button
+          className="Header__theme"
+          onClick={() => dispatch(changeTheme())}
+        >
+          {theme === 'dark'
+            ? (
+              <Tooltip title="Toggle Light">
+                <LightModeIcon style={{ color: "yellow"}} />
+              </Tooltip>
+            )
+            : (
+              <Tooltip title="Toggle Dark">
+                <DarkModeIcon style={{ color: "blue"}} />
+              </Tooltip>
+            )
+          }
+        </button>
       </div>
     </header>
   )

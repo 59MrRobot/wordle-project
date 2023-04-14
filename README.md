@@ -15,13 +15,14 @@ Access my site at https://59mrrobot.github.io/wordle-project/
 ![App screenshot - main app](wordle.PNG)
 
 ## Technologies:
-  - TypeScript
-  - React
-  - Redux
-  - Redux Persist
-  - HTML
-  - SCSS
-  - BEM Methodology
+- TypeScript
+- React
+- Redux
+- Redux Persist
+- HTML
+- SCSS
+- BEM Methodology
+- MUI
 
 ## Setup:
 

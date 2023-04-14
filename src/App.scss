@@ -1,16 +1,23 @@
 body {
   text-align: center;
-  font-family: Verdana, sans-serif;
+
   margin: 0;
   overflow: hidden;
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+  height: 100vh;
 
-* {
-  box-sizing: border-box;
+  &--dark {
+    background-color: #121213;
+  }
+
+  &--light {
+    background-color: dark;
+  }
+
+  &__container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }

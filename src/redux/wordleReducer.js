@@ -23,6 +23,7 @@ const wordleSlice = createSlice({
     usedKeys: {},
     isGameDone: false,
     errorMessage: '',
+    theme: 'light',
   },
   reducers: {
     updateShowInstructions: (state, action) => {
@@ -69,6 +70,9 @@ const wordleSlice = createSlice({
     updateErrorMessage: (state, action) => {
       state.errorMessage = action.payload;
     },
+    changeTheme: (state) => {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
+    }
   },
 });
 
@@ -84,6 +88,7 @@ export const {
   updateGameResult,
   resetGame,
   updateErrorMessage,
+  changeTheme,
 } = wordleSlice.actions;
 
 export default wordleSlice.reducer;

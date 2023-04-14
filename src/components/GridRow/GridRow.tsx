@@ -1,7 +1,8 @@
 import React from 'react';
-import { Guess } from '../../react-app-env';
+import { Guess, State } from '../../react-app-env';
 import cn from 'classnames';
 import './GridRow.scss';
+import { useSelector } from 'react-redux';
 
 interface Props {
   guess?: Guess;
@@ -10,16 +11,19 @@ interface Props {
 
 export const GridRow: React.FC<Props> = React.memo(
   ({ guess, currentGuess }) => {
+    const theme = useSelector((state: State) => state.wordle).theme;
 
     if (guess) {
       return (
         <div className="row grid__row">
           {guess.map((letter, index) => (
-            <div 
+            <div
               key={index} 
               className={cn(
                 'row__item',
+                `row__item--${theme}`,
                 letter.color,
+                `${letter.color}--${theme}`,
               )}
             >
               {letter.key}
@@ -35,7 +39,7 @@ export const GridRow: React.FC<Props> = React.memo(
       return (
         <div className="row current">
           {currentGuessArray.map((letter: string, index: number) => (
-            <div key={index} className="row__item filled">
+            <div key={index} className={`row__item filled row__item--${theme}`}>
               {letter}
             </div>
           ))}
