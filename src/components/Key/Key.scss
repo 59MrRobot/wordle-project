@@ -1,17 +1,51 @@
 .key {
-  width: 43px;
   height: 58px;
-  background: #818384;
-  display: inline-block;
+  flex: 1;
+  margin-right: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
   border: none;
-  border-radius: 6px;
-  line-height: 50px;
-  cursor: pointer;
-  color: #fff;
+  border-radius: 4px;
+  background: #818384;
+  // color: #fff;
+
+  font-size: 1.25em;
   font-weight: bold;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+
+  &--dark {
+    color: #fff;
+  }
+
+  &--light {
+    color: #000;
+  }
+
+  &--half {
+    flex: 0.5;
+    background: #fff;
+    margin: 0;
+
+    &-dark {
+      background: #121213;
+    }
+  
+    &-light {
+      background: #fff;
+    }
+  }
   
   &--big {
-    width: 65px;
+    flex: 1.5;
+    font-size: 12px;
   }
 
   &--green {

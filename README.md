@@ -11,15 +11,20 @@ Access my site at https://59mrrobot.github.io/wordle-project/
 
 ## Screenshots:
 
-![App screenshot - instructions section](instructions.PNG)
-![App screenshot - main app](wordle.PNG)
+![App screenshot - main app (dark mode)](home-dark.png)
+![App screenshot - main app (light mode)](home-light.png)
+![App screenshot - instructions (dark mode)](instructions-dark.png)
+![App screenshot - instructions (light mode)](instructions-light.png)
 
 ## Technologies:
-  - TypeScript
-  - React
-  - HTML
-  - SCSS
-  - BEM Methodology
+- TypeScript
+- React
+- Redux
+- Redux Persist
+- HTML
+- SCSS
+- BEM Methodology
+- MUI
 
 ## Setup:
 

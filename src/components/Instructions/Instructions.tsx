@@ -1,52 +1,67 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateShowInstructions } from '../../redux/wordleReducer';
 import { Example } from '../Example';
 import './Instructions.scss';
+import CloseIcon from '@mui/icons-material/Close';
+import { State } from '../../react-app-env';
 
-interface Props {
-  setShowInstructions: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const Instructions: React.FC = () => {
+  const theme = useSelector((state: State) => state.wordle).theme;
+  const dispatch = useDispatch();
 
-export const Instructions: React.FC<Props> = ({ setShowInstructions }) => {
   return (
-    <div className="Instructions">
-      <div className="Instructions__wrapper">
+    <div className={`Instructions Instructions--${theme}`}>
+      <div className={`Instructions__wrapper Instructions__wrapper--${theme}`}>
         <div className="Instructions__controls">
-          <div></div>
-          <h2 className="Instructions__title">How to play</h2>
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="Instructions__close"
-            onClick={() => setShowInstructions(false)}
+            onClick={() => dispatch(updateShowInstructions(false))}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" data-testid="icon-close">
-              <path fill="var(--color-tone-1)" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-            </svg>
+            <CloseIcon style={{ color: theme === "light" ? "#000" : "#fff"}}/>
           </button>
         </div>
 
         <div className="Instructions__content">
-          <p>
-            Guess the <strong>WORDLE</strong> in six tries.
+          <h2 className="Instructions__title">How to play</h2>
+
+          <p className="Instructions__subheading">
+            Guess the Wordle in 6 tries.
           </p>
 
-          <p>
-            Each guess must be a valid five-letter word. Hit the enter button to submit.
-          </p>
+          <ul className="Instructions__list">
+            <li className="Instructions__item">
+              Each guess must be a valid 5-letter word.
+            </li>
 
-          <p>
-            After each guess, the color of the tiles will change to show how close your guess was to the word.
-          </p>
+            <li className="Instructions__item">
+              The color of the tiles will change to show how close your guess was to the word.
+            </li>
+          </ul>
 
           <div className="Instructions__examples">
             <p><strong>Examples</strong></p>
-            <Example letters={['w', 'e', 'a', 'r', 'y']} />
-            <p>The letter <strong>W</strong> is in the correct spot.</p>
 
-            <Example letters={['p', 'i', 'l', 'l', 's']} />
-            <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>
+            <div className="Instructions__examples-item">
+              <Example letters={['w', 'e', 'a', 'r', 'y']} />
 
-            <Example letters={['v', 'a', 'g', 'u', 'e']} />
-            <p>The letter <strong>U</strong> is not in the word in any spot.</p>
+              <p style={{ marginTop: "8px" }}><strong>W</strong> is in the word and in the correct spot.</p>
+            </div>
+
+
+            <div className="Instructions__examples-item">
+              <Example letters={['p', 'i', 'l', 'l', 's']} />
+
+              <p style={{ marginTop: "8px" }}><strong>I</strong> is in the word but in the wrong spot.</p>
+            </div>
+
+
+            <div className="Instructions__examples-item">
+              <Example letters={['v', 'a', 'g', 'u', 'e']} />
+
+              <p style={{ marginTop: "8px" }}><strong>U</strong> is not in the word in any spot.</p>
+            </div>
           </div>
         </div>
       </div>

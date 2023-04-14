@@ -1,17 +1,20 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../../contexts/AppContext';
+import React from 'react';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { Guess, State } from '../../react-app-env';
 import { GridRow } from '../GridRow/GridRow';
+import './Grid.scss';
 
 export const Grid: React.FC = React.memo(
   () => {
-    const { currentGuess, guesses, turn } = useContext(AppContext);
+    const wordle = useSelector((state: State) => state.wordle);
+    const { guesses, currentGuess, turn } = wordle;
 
     return (
       <div className="grid">
-        {guesses.map((guess, index) => {
+        {guesses.map((guess: Guess, index: number) => {
           return index !== turn
             ? (
-              <GridRow 
+              <GridRow
                 key={index}
                 guess={guess}
               />

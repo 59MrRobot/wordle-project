@@ -5,6 +5,7 @@
   &__wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__help {
@@ -17,5 +18,19 @@
     font-size: 32px;
     margin: 0;
     text-align: center;
+
+    &--dark {
+      color: #fff;
+    }
+  
+    &--light {
+      color: #000;
+    }
+  }
+
+  &__theme {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
 }
