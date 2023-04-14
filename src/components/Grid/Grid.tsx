@@ -7,7 +7,7 @@ import './Grid.scss';
 export const Grid: React.FC = React.memo(
   () => {
     const wordle = useSelector((state: State) => state.wordle);
-    const { guesses, currentGuess, turn, theme } = wordle;
+    const { guesses, currentGuess, turn } = wordle;
 
     return (
       <div className="grid">

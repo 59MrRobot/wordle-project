@@ -1,23 +1,25 @@
 import React from 'react';
-import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateShowInstructions } from '../../redux/wordleReducer';
 import { Example } from '../Example';
 import './Instructions.scss';
 import CloseIcon from '@mui/icons-material/Close';
+import { State } from '../../react-app-env';
 
 export const Instructions: React.FC = () => {
+  const theme = useSelector((state: State) => state.wordle).theme;
   const dispatch = useDispatch();
 
   return (
-    <div className="Instructions">
-      <div className="Instructions__wrapper">
+    <div className={`Instructions Instructions--${theme}`}>
+      <div className={`Instructions__wrapper Instructions__wrapper--${theme}`}>
         <div className="Instructions__controls">
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="Instructions__close"
             onClick={() => dispatch(updateShowInstructions(false))}
           >
-            <CloseIcon />
+            <CloseIcon style={{ color: theme === "light" ? "#000" : "#fff"}}/>
           </button>
         </div>
 

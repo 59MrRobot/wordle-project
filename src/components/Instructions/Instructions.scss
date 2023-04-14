@@ -11,7 +11,15 @@
   justify-content: center;
   align-items: center;
 
-  background: rgba(255, 255, 255, 0.7);
+  // background: rgba(255, 255, 255, 0.7);
+
+  &--light {
+    background-color: #fff;
+  }
+
+  &--dark {
+    background-color: #12121362;
+  }
 
   &__wrapper {
     padding: 32px;
@@ -20,7 +28,15 @@
 
     border-radius: 8px;
     border: 1px solid #1a1a1b;
-    background-color: #fff;
+    // background-color: #fff;
+    &--light {
+      background-color: #fff;
+    }
+  
+    &--dark {
+      background-color: #121213;
+      color: #fff;
+    }
   }
 
   &__controls {
