@@ -20,7 +20,7 @@ export const Instructions: React.FC = () => {
             onClick={() => dispatch(updateShowInstructions(false))}
           >
             <CloseIcon style={
-              { color: theme === "light" ? "#000000" : "#fffff"}
+              { color: theme === "light" ? "#000" : "#fff"}
             }/>
           </button>
         </div>
@@ -42,7 +42,7 @@ export const Instructions: React.FC = () => {
             </li>
           </ul>
 
-          <div className="Instructions__examples">
+          <div className={`Instructions__examples Instructions__examples--${theme}`}>
             <p><strong>Examples</strong></p>
 
             <div className="Instructions__examples-item">

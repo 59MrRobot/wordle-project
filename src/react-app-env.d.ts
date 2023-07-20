@@ -19,6 +19,7 @@ export enum Themes {
 export interface Wordle {
   showInstructions: string;
   solution: string;
+  isFetchSolution: boolean;
   turn: number;
   currentGuess: "";
   guesses: Guess[];

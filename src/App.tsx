@@ -8,8 +8,9 @@ import { Header } from './components/Header';
 import { Instructions } from './components/Instructions';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { pickSolution } from './redux/wordleReducer';
+import { updateFetchSolution } from './redux/wordleReducer';
 import { State, Wordle } from './react-app-env';
+import { fetchSolution } from './redux/apiCalls';
 
 function App() {
   const wordle: Wordle = useSelector((state: State) => state.wordle);
@@ -18,14 +19,19 @@ function App() {
   const {
     showInstructions,
     solution,
+    isFetchSolution,
     errorMessage,
     isGameDone,
     theme,
   } = wordle;
 
   useEffect(() => {
-    dispatch(pickSolution());
-  }, [dispatch]);
+    // dispatch(pickSolution());
+    if (isFetchSolution) {
+      fetchSolution(dispatch);
+      dispatch(updateFetchSolution(false));
+    }
+  }, [dispatch, isFetchSolution]);
 
   return (
     <div className={`App App--${theme}`}>

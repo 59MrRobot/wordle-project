@@ -1,20 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import data from '../api/data.json';
-
-const pickRandomSolution = () => {
-  const randomIndex = Math.floor(Math.random() * data.solutions.length);
-
-  const randomSolution = data.solutions[randomIndex];
-
-  return randomSolution.word;
-}
 
 const wordleSlice = createSlice({
   name: 'wordle',
   initialState: {
     showInstructions: true,
     solution: '',
+    isFetchSolution: true,
     turn: 0,
     currentGuess: '',
     guesses: [...Array(6)],
@@ -29,8 +21,11 @@ const wordleSlice = createSlice({
     updateShowInstructions: (state, action) => {
       state.showInstructions = action.payload;
     },
-    pickSolution: (state) => {
-      state.solution = pickRandomSolution();
+    getSolution: (state, action) => {
+      state.solution = action.payload;
+    },
+    updateFetchSolution: (state, action) => {
+      state.isFetchSolution = action.payload;
     },
     increaseTurn: (state) => {
       state.turn += 1;
@@ -58,7 +53,7 @@ const wordleSlice = createSlice({
       state.isGameDone = action.payload;
     },
     resetGame: (state) => {
-      state.solution = pickRandomSolution();
+      state.isFetchSolution = true;
       state.turn = 0;
       state.currentGuess = "";
       state.guesses = [...Array(6)];
@@ -78,7 +73,8 @@ const wordleSlice = createSlice({
 
 export const {
   updateShowInstructions,
-  pickSolution,
+  getSolution,
+  updateFetchSolution,
   increaseTurn,
   updateCurrentGuess,
   updateGuesses,

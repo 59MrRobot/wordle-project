@@ -36,6 +36,7 @@
     &--dark {
       background-color: #121213;
       color: #fff;
+      border-color: #bbb;
     }
   }
 
@@ -88,6 +89,14 @@
 
   &__examples {
     border-bottom: 1px solid #3a3a3c;
+
+    &--light {
+      border-color: #3a3a3c;
+    }
+    
+    &--dark {
+      border-color: #bbb;
+    }
 
     &-item {
       margin: 8px 0 20px;
